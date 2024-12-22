@@ -7,9 +7,7 @@ import Cloudy from "../public/Cloudy.svg"
 import MostlyCloudyNight from "../public/MostlyCloudy-night.svg"
 import MostlyCloudy from "../public/MostlyCloudy.svg"
 
-function getHours(hour, hours, active) {
-    console.log(active)
-    
+function getHours(hour, hours, active) {    
     if (active) {
         let slice1 = hours.slice(0, hour)
         
