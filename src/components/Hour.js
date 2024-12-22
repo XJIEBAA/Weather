@@ -5,9 +5,8 @@ import object from "../../store/counterSlice.js"
 
 console.log()
 
-const App = () => {
-    let [weather, setWeather] = React.useState([])
-    const wtr = useSelector(state => state.current)
+const Hour = () => {
+    const current = useSelector(state => state.current)
     const dispatch = useDispatch()
 
     return (
@@ -21,4 +20,4 @@ const App = () => {
     )
 }
 
-export default App
+export default Hour

@@ -11,15 +11,13 @@ module.exports = createSlice({
     },
     reducers: {
         set: (state, action) => {
-            console.log(action)
-            console.log("action")
             state.weather = [action.payload]
             state.location = [action.payload.location]
             state.current = [action.payload.forecast.forecastday[0]]
             state.active = 0
         },
         setCurrent: (state, action) => {
-            state.current = [state.weather.forecast.forecastday[action.payload.key]]
+            state.current = [action.payload.weather[0].forecast.forecastday[action.payload.key]]
         }
     }
 })

@@ -13,8 +13,9 @@ const App = () => {
     const weather = useSelector(state => state.weather)
     const current = useSelector(state => state.current)
     const location = useSelector(state => state.location)
-    const count = useSelector(state => state.value)
     const dispatch = useDispatch()
+
+    console.log(weather)
 
     useEffect(() => {
         fetch('http://api.weatherapi.com/v1/forecast.json?key=42f1b40bbf184411b26100231242112&q=London&days=7&aqi=yes&alerts=no')
@@ -37,10 +38,6 @@ const App = () => {
                     return <Day item={item} id={key}></Day>
                 }) : null}
             </div>
-{/* 
-            {weather.length > 0 ? weather.map((key, item) => {
-                return <div key={key}>Hello World</div>
-            }) : null} */}
             <div>
             </div>
         </div>
