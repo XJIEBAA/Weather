@@ -3,7 +3,7 @@ import React, { use, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
 
-import { container, containerPadding, title, hours, pretitle, days, info, humiditiy } from "../css/style.css"
+import { container, containerPadding, title, hours, pretitle, days, bold, humiditiy, containerSmallPadding } from "../css/style.css"
 
 import Day from "./Day.js"
 import Hour from "./Hour.js"
@@ -55,13 +55,22 @@ const App = () => {
                     return <Hour item={item} id={key}></Hour>
                 }) : null}
             </div>
-
-            <div className={info}>
-                <div className={humiditiy}>
-                    Humiditiy: {current.length > 0 ? current[0].day.avghumidity : null}
-                </div>
-            </div>
             
+            <div class={deg}>
+                <Switch/>
+            </div>
+
+            <div className={containerSmallPadding}>
+                <span className={humiditiy}>
+                    Humiditiy: <span className={bold}>{current.length > 0 ? current[0].day.avghumidity : null}</span>%
+                </span>
+                
+                <span className={humiditiy}>
+                    Wind: <span className={bold}>{current.length > 0 ? current[0].day.maxwind_kph : null}</span> KPH S
+                </span>
+
+            </div>            
+
             <div class={days}>
                 {weather.length > 0 ? weather[0].forecast.forecastday.map((item, key) => {
                     console.log(key)

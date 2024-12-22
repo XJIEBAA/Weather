@@ -47,7 +47,7 @@ function Hour({ id, item }) {
                 {component != undefined ? <img src={component[0]}/> : null}
             </div>
             <div className={degreeHour}>
-                {celsius == 1 ? item.dewpoint_c : item.dewpoint_f}°
+                {Math.floor(celsius == 1 ? item.dewpoint_c : item.dewpoint_f)}°
             </div>
         </div>
     )
