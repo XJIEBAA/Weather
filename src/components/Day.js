@@ -5,15 +5,17 @@ import object from "../../store/counterSlice.js"
 
 console.log()
 
-const App = () => {
+function Day({ id, item }) {
     const weather = useSelector(state => state.weather)
     const dispatch = useDispatch()
 
+    console.log(item, id)
+
     return (
-        <div onClick={dispatch(object.actions.)}>
+        <div onClick={() => dispatch(object.actions.setCurrent({key: id, weather: weather}))}>
             Hello World
         </div>
     )
 }
 
-export default App
+export default Day
