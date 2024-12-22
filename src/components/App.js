@@ -3,10 +3,11 @@ import React, { use, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
 
-import { container, containerPadding, title, hours, pretitle, days, bold, humiditiy, containerSmallPadding } from "../css/style.css"
+import { container, containerPadding, title, hours, pretitle, deg, days, bold, humiditiy, containerSmallPadding } from "../css/style.css"
 
 import Day from "./Day.js"
 import Hour from "./Hour.js"
+import Switch from "./Switch.js"
 
 function check(title, time) {
     if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
@@ -22,9 +23,8 @@ const App = () => {
     const weather = useSelector(state => state.weather)
     const current = useSelector(state => state.current)
     const location = useSelector(state => state.location)
+    const active = useSelector(state => state.active)
     const dispatch = useDispatch()
-
-    console.log(weather)
 
     useEffect(() => {
         fetch('http://api.weatherapi.com/v1/forecast.json?key=42f1b40bbf184411b26100231242112&q=London&days=7&aqi=yes&alerts=no')
@@ -36,7 +36,7 @@ const App = () => {
     let date = new Date()
     let hour = date.getHours();
 
-    console.log(current)
+    console.log(active)
 
     return (
         <div className={container}>
@@ -50,8 +50,10 @@ const App = () => {
             </div>
             
             <div class={hours}>
-                {current.length > 0 ? current[0].hour.slice(0, 8).map((item, key) => {
-                    console.log(key)
+                {current.length > 0 && active === 0 ? current[0].hour.slice(hour, (hour + 8 % 24) - 4).map((item, key) => {
+                    return <Hour item={item} id={key}></Hour>
+                }) : null}
+                {current.length > 0 && active !== 0 ? current[0].hour.slice(0, 8).map((item, key) => {
                     return <Hour item={item} id={key}></Hour>
                 }) : null}
             </div>
@@ -73,7 +75,6 @@ const App = () => {
 
             <div class={days}>
                 {weather.length > 0 ? weather[0].forecast.forecastday.map((item, key) => {
-                    console.log(key)
                     return <Day item={item} id={key}></Day>
                 }) : null}
             </div>

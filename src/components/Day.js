@@ -7,7 +7,6 @@ import { wDay, degree } from "../css/style.css"
 import Cloudy from "../public/Cloudy.svg"
 import MostlyCloudyNight from "../public/MostlyCloudy-night.svg"
 import MostlyCloudy from "../public/MostlyCloudy.svg"
-import { ImageGroup } from "semantic-ui-react"
 
 function getDays(day, days) {
     let slice1 = days.slice(0, day)
