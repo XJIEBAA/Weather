@@ -98,21 +98,25 @@ body {
     font-size: 20px;
     margin-right: 5px;
     font-weight: 800;
+    cursor: pointer;
     text-decoration: underline;
 }
 
 .degreeCels {
+    cursor: pointer;
     font-size: 20px;
     margin-right: 5px;
 }
 
 .farActive {
+    cursor: pointer;
     font-size: 20px;
     font-weight: 800;
     text-decoration: underline;
 }
 
 .degreeFar {
+    cursor: pointer;
     font-size: 20px;
 }
 

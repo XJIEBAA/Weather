@@ -14,7 +14,7 @@ function check(title, time) {
         return "Mostly Cloudy"
     } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
         return "Mostly Cloudy"
-    } else if ((title == "Mist" || title == "Cloudy ")) {
+    } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Cloudy ")) {
         return "Cloudy"
     }
 }
@@ -36,8 +36,6 @@ const App = () => {
     let date = new Date()
     let hour = date.getHours();
 
-    console.log(active)
-
     return (
         <div className={container}>
             <div className={containerPadding}>
@@ -50,7 +48,7 @@ const App = () => {
             </div>
             
             <div class={hours}>
-                {current.length > 0 && active === 0 ? current[0].hour.slice(hour, (hour + 8 % 24) - 4).map((item, key) => {
+                {current.length > 0 && active === 0 ? current[0].hour.slice(hour, ((hour + 8) > 24 ? 24 : hour + 8) - 1).map((item, key) => {
                     return <Hour item={item} id={key}></Hour>
                 }) : null}
                 {current.length > 0 && active !== 0 ? current[0].hour.slice(0, 8).map((item, key) => {

@@ -20,7 +20,7 @@ function check(title, time) {
         return [MostlyCloudy, "Mostly Cloudy"]
     } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
-    } else if ((title == "Mist" || title == "Cloudy ")) {
+    } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Cloudy ")) {
         return [Cloudy, "Cloudy"]
     }
 }

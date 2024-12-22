@@ -17,7 +17,7 @@ function getHours(hour, hours, active) {
     }
 
     if (!active) {
-        let slice1 = hours.slice(hour, (hour + 8 % 24) - 1)
+        let slice1 = hours.slice(hour - 1, (hour + 8 % 24))
         
         return [...slice1]
     }
