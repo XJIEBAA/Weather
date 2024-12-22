@@ -2,12 +2,11 @@ import React, { use, useEffect } from "react"
 
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
-import { wDay, degree } from "../css/style.css"
+import { wHour, degree, degreeHour } from "../css/style.css"
 
 import Cloudy from "../public/Cloudy.svg"
 import MostlyCloudyNight from "../public/MostlyCloudy-night.svg"
 import MostlyCloudy from "../public/MostlyCloudy.svg"
-import { ImageGroup } from "semantic-ui-react"
 
 function getHours(hour, hours) {
     let slice1 = hours.slice(0, hour)
@@ -17,11 +16,11 @@ function getHours(hour, hours) {
 }
 
 function check(title, time) {
-    if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
+    if ((title == "Patchy rain nearby" || title == "Sunny" || title == "Clear ") && time >= 6 && time < 23) {
         return [MostlyCloudy, "Mostly Cloudy"]
-    } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
+    } else if ((title == "Patchy rain nearby" || title == "Sunny" || title == "Clear ") && time <= 6 && time >= 23) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
-    } else if ((title == "Mist" || title == "Cloudy ")) {
+    } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Light drizzle" || title == "Fog" || title == "Overcast " || title == "Cloudy ")) {
         return [Cloudy, "Cloudy"]
     }
 }
@@ -31,8 +30,6 @@ function Hour({ id, item }) {
     const celsius = useSelector(state => state.celsius)
     const dispatch = useDispatch()
     
-    console.log(item)
-
     let hours = ["1 AM", "2 AM", "3 AM", "4 AM", "5 AM", "7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 AM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM", "7 PM", "8 PM", "9 PM", "10 PM", "11 PM", "12 PM"]
     let date = new Date()
 
@@ -41,11 +38,16 @@ function Hour({ id, item }) {
 
     let component = check(item.condition.text, hour)
 
+    console.log(item)
+
     return (
-        <div>
+        <div className={wHour}>
             {newHours[id]}
-            <div className={degree}>
-                {item.avgtemp_c} {celsius == 1 ? "C°" : "F°"}
+            <div>
+                {component != undefined ? <img src={component[0]}/> : null}
+            </div>
+            <div className={degreeHour}>
+                {celsius == 1 ? item.dewpoint_c : item.dewpoint_f}°
             </div>
         </div>
     )

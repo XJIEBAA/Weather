@@ -47,7 +47,7 @@ function Day({ id, item }) {
                 {component != undefined ? <img src={component[0]}/> : null}
             </div>
             <div className={degree}>
-                {celsius == 1 ? item.day.avgtemp_c : item.day.avgtemp_f} °
+                {celsius == 1 ? item.day.avgtemp_c : item.day.avgtemp_f}°
             </div>
         </div>
     )

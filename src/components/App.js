@@ -48,7 +48,7 @@ const App = () => {
                     {location.length > 0 ? location[0].tz_id : null}
                 </div>
             </div>
-
+            
             <div class={hours}>
                 {current.length > 0 ? current[0].hour.slice(0, 8).map((item, key) => {
                     console.log(key)
