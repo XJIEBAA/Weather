@@ -5,24 +5,18 @@ module.exports = createSlice({
     initialState: {
         weather: [],
         current: [],
+        location: [],
         celsius: true,
-        active: 0,
-        value: 0
+        active: 0
     },
     reducers: {
         set: (state, action) => {
             console.log(action)
             console.log("action")
             state.weather = [action.payload]
-        },
-        incremented: (state, action) => {
-            state.value += 1
-        },
-        decrement: state => {
-            state.value -= 1
-        },
-        selectCount: state => {
-            return state.value
+            state.location = [action.payload.location]
+            state.current = [action.payload.forecast.forecastday[0]]
+            state.active = 0
         }
     }
 })
