@@ -18,6 +18,7 @@ module.exports = createSlice({
         },
         setCurrent: (state, action) => {
             state.current = [action.payload.weather[0].forecast.forecastday[action.payload.key]]
+            state.active = action.payload.key
         }
     }
 })

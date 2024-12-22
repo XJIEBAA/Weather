@@ -36,6 +36,8 @@ const App = () => {
     let date = new Date()
     let hour = date.getHours();
 
+    console.log(current)
+
     return (
         <div className={container}>
             <div className={containerPadding}>
@@ -48,7 +50,7 @@ const App = () => {
             </div>
 
             <div class={hours}>
-                {current.length > 0 ? current.hour.map((item, key) => {
+                {current.length > 0 ? current[0].hour.slice(0, 8).map((item, key) => {
                     console.log(key)
                     return <Hour item={item} id={key}></Hour>
                 }) : null}
