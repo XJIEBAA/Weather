@@ -3,7 +3,7 @@ import React, { use, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
 
-import { container, containerPadding, title, hours, pretitle, days } from "../css/style.css"
+import { container, containerPadding, title, hours, pretitle, days, info, humiditiy } from "../css/style.css"
 
 import Day from "./Day.js"
 import Hour from "./Hour.js"
@@ -54,6 +54,12 @@ const App = () => {
                     console.log(key)
                     return <Hour item={item} id={key}></Hour>
                 }) : null}
+            </div>
+
+            <div className={info}>
+                <div className={humiditiy}>
+                    Humiditiy: {current.length > 0 ? current[0].day.avghumidity : null}
+                </div>
             </div>
             
             <div class={days}>
