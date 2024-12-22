@@ -3,9 +3,10 @@ import React, { use, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
 
-import { container, containerPadding, title, pretitle, days } from "../css/style.css"
+import { container, containerPadding, title, hours, pretitle, days } from "../css/style.css"
 
 import Day from "./Day.js"
+import Hour from "./Hour.js"
 
 function check(title, time) {
     if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
@@ -22,6 +23,8 @@ const App = () => {
     const current = useSelector(state => state.current)
     const location = useSelector(state => state.location)
     const dispatch = useDispatch()
+
+    console.log(weather)
 
     useEffect(() => {
         fetch('http://api.weatherapi.com/v1/forecast.json?key=42f1b40bbf184411b26100231242112&q=London&days=7&aqi=yes&alerts=no')
@@ -42,6 +45,13 @@ const App = () => {
                 <div className={pretitle}>
                     {location.length > 0 ? location[0].tz_id : null}
                 </div>
+            </div>
+
+            <div class={hours}>
+                {current.length > 0 ? current.hour.map((item, key) => {
+                    console.log(key)
+                    return <Hour item={item} id={key}></Hour>
+                }) : null}
             </div>
             
             <div class={days}>

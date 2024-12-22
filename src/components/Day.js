@@ -18,7 +18,7 @@ function getDays(day, days) {
 
 function check(title, time) {
     if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
-        return [MostlyCloudyNight, "Mostly Cloudy"]
+        return [MostlyCloudy, "Mostly Cloudy"]
     } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
     } else if ((title == "Mist" || title == "Cloudy ")) {
