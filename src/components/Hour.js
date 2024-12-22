@@ -25,7 +25,7 @@ function getHours(hour, hours, active) {
 function check(title, time) {
     if ((title == "Patchy rain nearby" || title == "Sunny" || title == "Clear ") && time >= 6 && time < 23) {
         return [MostlyCloudy, "Mostly Cloudy"]
-    } else if ((title == "Patchy rain nearby" || title == "Sunny" || title == "Clear ") && time <= 6 && time >= 23) {
+    } else if ((title == "Patchy rain nearby" || title == "Sunny" || title == "Clear ") && (time <= 6 || time >= 23)) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
     } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Light drizzle" || title == "Fog" || title == "Overcast " || title == "Cloudy ")) {
         return [Cloudy, "Cloudy"]

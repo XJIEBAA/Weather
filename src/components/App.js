@@ -12,7 +12,7 @@ import Switch from "./Switch.js"
 function check(title, time) {
     if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
         return "Mostly Cloudy"
-    } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
+    } else if ((title == "Patchy rain nearby" || title == "Sunny") && (time <= 6 || time >= 23)) {
         return "Mostly Cloudy"
     } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Cloudy ")) {
         return "Cloudy"
@@ -35,6 +35,11 @@ const App = () => {
 
     let date = new Date()
     let hour = date.getHours();
+
+    console.log(weather
+
+
+    )
 
     return (
         <div className={container}>

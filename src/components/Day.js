@@ -16,9 +16,12 @@ function getDays(day, days) {
 }
 
 function check(title, time) {
+    console.log(time)
+    console.log(title)
+
     if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
         return [MostlyCloudy, "Mostly Cloudy"]
-    } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
+    } else if ((title == "Patchy rain nearby" || title == "Sunny") && (time <= 6 || time >= 23)) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
     } else if ((title == "Mist" || title == "Partly Cloudy " || title == "Cloudy ")) {
         return [Cloudy, "Cloudy"]
@@ -38,6 +41,8 @@ function Day({ id, item }) {
     let hour = date.getHours();
 
     let component = check(item.day.condition.text, hour)
+
+    console.log(component)
 
     return (
         <div className={wDay} onClick={() => dispatch(object.actions.setCurrent({key: id, weather: weather}))}>
