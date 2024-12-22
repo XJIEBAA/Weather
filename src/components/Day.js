@@ -2,11 +2,12 @@ import React, { use, useEffect } from "react"
 
 import { useSelector, useDispatch } from "react-redux"
 import object from "../../store/counterSlice.js"
-import { wDay } from "../css/style.css"
+import { wDay, degree } from "../css/style.css"
 
 import Cloudy from "../public/Cloudy.svg"
 import MostlyCloudyNight from "../public/MostlyCloudy-night.svg"
 import MostlyCloudy from "../public/MostlyCloudy.svg"
+import { ImageGroup } from "semantic-ui-react"
 
 function getDays(day, days) {
     let slice1 = days.slice(0, day)
@@ -16,17 +17,18 @@ function getDays(day, days) {
 }
 
 function check(title, time) {
-    if (title == "Patchy rain nearby" && time > 6 && time < 23) {
+    if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
-    } else if (title == "Patchy rain nearby" && time < 6 && time > 23) {
+    } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
         return [MostlyCloudyNight, "Mostly Cloudy"]
-    } else if ((title == "Mist" || title == "Cloudy") && time < 6 && time > 23) {
+    } else if ((title == "Mist" || title == "Cloudy ")) {
         return [Cloudy, "Cloudy"]
     }
 }
 
 function Day({ id, item }) {
     const weather = useSelector(state => state.weather)
+    const celsius = useSelector(state => state.celsius)
     const dispatch = useDispatch()
 
     let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -34,10 +36,19 @@ function Day({ id, item }) {
     let day = date.getDay() + 6 
 
     let newDays = getDays(day, days)
+    let hour = date.getHours();
+
+    let component = check(item.day.condition.text, hour)
 
     return (
         <div className={wDay} onClick={() => dispatch(object.actions.setCurrent({key: id, weather: weather}))}>
             {newDays[id]}
+            <div>
+                {component != undefined ? <img src={component[0]}/> : null}
+            </div>
+            <div className={degree}>
+                {item.day.avgtemp_c} {celsius == 1 ? "C°" : "F°"}
+            </div>
         </div>
     )
 }

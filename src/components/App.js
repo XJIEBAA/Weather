@@ -7,15 +7,21 @@ import { container, containerPadding, title, pretitle, days } from "../css/style
 
 import Day from "./Day.js"
 
-console.log()
+function check(title, time) {
+    if ((title == "Patchy rain nearby" || title == "Sunny") && time >= 6 && time < 23) {
+        return "Mostly Cloudy"
+    } else if ((title == "Patchy rain nearby" || title == "Sunny") && time <= 6 && time >= 23) {
+        return "Mostly Cloudy"
+    } else if ((title == "Mist" || title == "Cloudy ")) {
+        return "Cloudy"
+    }
+}
 
 const App = () => {
     const weather = useSelector(state => state.weather)
     const current = useSelector(state => state.current)
     const location = useSelector(state => state.location)
     const dispatch = useDispatch()
-
-    console.log(weather)
 
     useEffect(() => {
         fetch('http://api.weatherapi.com/v1/forecast.json?key=42f1b40bbf184411b26100231242112&q=London&days=7&aqi=yes&alerts=no')
@@ -24,11 +30,14 @@ const App = () => {
         .catch(error => console.log(error))
     }, [])
 
+    let date = new Date()
+    let hour = date.getHours();
+
     return (
         <div className={container}>
             <div className={containerPadding}>
                 <div className={title}>
-                    {current.length > 0 ? current[0].day.condition.text : null}
+                    {current.length > 0 ? check(current.length > 0 ? current[0].day.condition.text : null, hour) : null}
                 </div>
                 <div className={pretitle}>
                     {location.length > 0 ? location[0].tz_id : null}
